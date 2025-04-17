@@ -3,7 +3,7 @@ package com.example.data.source.remote.dto
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class WeatherResponseDto(
+data class CurrentWeatherDto(
     val name: String,
     val weather: List<WeatherDto>,
 )

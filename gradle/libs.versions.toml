@@ -15,7 +15,6 @@ moshiKotlin = "1.15.2"
 navigationCompose = "2.8.7"
 hilt = "2.51.1"
 appcompat = "1.7.0"
-material = "1.12.0"
 runtimeAndroid = "1.7.8"
 
 [libraries]
@@ -41,7 +40,6 @@ compose-material-icons-extended = { group = "androidx.compose.material", name = 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
