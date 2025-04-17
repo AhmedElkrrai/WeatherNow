@@ -34,8 +34,14 @@ android {
 }
 
 dependencies {
-    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
+    implementation(project(":core"))
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.okhttp3.logging.interceptor)
+
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
