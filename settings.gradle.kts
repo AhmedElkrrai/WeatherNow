@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "WeatherNow"
 include(":app")
+include(":core")

@@ -1,4 +1,4 @@
-package com.example.weathernow.ui.theme
+package com.example.core.presentation
 
 import androidx.compose.ui.graphics.Color
 
