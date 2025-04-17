@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":data"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
