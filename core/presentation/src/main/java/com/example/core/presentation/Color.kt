@@ -10,7 +10,8 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val  DeepSkyBlue = Color(0xFF2193b0)
-val  LightSkyBlue = Color(0xFF6dd5ed)
-val  Blue = Color(0xFF0D47A1)
-val  Mauve = Color(0xFF6A1B9A)
+val DeepSkyBlue = Color(0xFF2193b0)
+val LightSkyBlue = Color(0xFF6dd5ed)
+
+val SkyBlue = Color(0xFF87CEEB)
+val CelestialBlue = Color(0xFF3A7BD5)

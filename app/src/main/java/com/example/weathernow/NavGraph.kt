@@ -10,7 +10,7 @@ import com.example.cityinput.presentation.components.CityInputScreenRoot
 import com.example.core.presentation.CITY
 import com.example.core.presentation.Screen
 import com.example.currentweather.presentation.components.WeatherScreenRoot
-import com.example.forecast.presentation.ForecastScreenRoot
+import com.example.forecast.presentation.components.ForecastScreenRoot
 
 @Composable
 fun NavGraph(
@@ -40,8 +40,7 @@ fun NavGraph(
             )
         ) { backStackEntry ->
             ForecastScreenRoot(
-                navController = navController,
-                city = backStackEntry.arguments?.getString(CITY) ?: "",
+                cityKey = backStackEntry.arguments?.getString(CITY) ?: "",
             )
         }
     }

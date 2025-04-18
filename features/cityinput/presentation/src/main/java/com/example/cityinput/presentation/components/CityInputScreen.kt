@@ -22,10 +22,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.core.domain.City
-import com.example.core.presentation.Blue
+import com.example.core.presentation.CelestialBlue
 import com.example.core.presentation.DeepSkyBlue
 import com.example.core.presentation.LightSkyBlue
-import com.example.core.presentation.Mauve
+import com.example.core.presentation.SkyBlue
 
 @Composable
 fun CityInputScreen(
@@ -71,7 +71,7 @@ fun CityInputScreen(
                         .fillMaxWidth()
                         .clickable { onCitySelected(city) },
                     colors = CardDefaults.cardColors(
-                        containerColor = if (isSelected) Mauve else Blue
+                        containerColor = if (isSelected) CelestialBlue else SkyBlue
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {

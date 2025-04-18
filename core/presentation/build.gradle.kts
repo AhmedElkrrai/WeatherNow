@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation(project(":core:domain"))
+    implementation(libs.lottie.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.bundles.compose)

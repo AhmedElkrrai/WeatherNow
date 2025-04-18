@@ -28,6 +28,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.core.presentation.DeepSkyBlue
 import com.example.core.presentation.LightSkyBlue
+import com.example.core.presentation.LoadingScreen
 import com.example.currentweather.presentation.WeatherViewState
 import com.example.currentweather.presentation.utils.getLottieAnimationForCondition
 import java.time.LocalDate
@@ -137,13 +138,7 @@ fun WeatherScreen(
         }
 
         if (state.isLoading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            LoadingScreen()
         }
     }
 }
