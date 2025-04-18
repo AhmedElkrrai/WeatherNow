@@ -48,7 +48,6 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     implementation(libs.lottie.compose)
-    implementation(libs.coil.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

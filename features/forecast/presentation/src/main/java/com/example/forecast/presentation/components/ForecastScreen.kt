@@ -1,6 +1,5 @@
 package com.example.forecast.presentation.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -41,8 +40,6 @@ fun ForecastScreen(
                 color = Color.White
             )
         }
-
-        Log.d("", "Taggs - dailyForecasts size = ${forecast.dailyForecasts.size}")
 
         itemsIndexed(forecast.dailyForecasts) { _, day ->
             ForecastCard(day)

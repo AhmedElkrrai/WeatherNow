@@ -1,12 +1,15 @@
 package com.example.forecast.presentation.components
 
-import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -15,52 +18,77 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import androidx.compose.ui.unit.sp
 import com.example.core.presentation.CelestialBlue
+import com.example.core.presentation.DeepSkyBlue
 import com.example.forecast.domain.entities.WeatherForecast
+import com.example.forecast.presentation.utils.getEmojiForCondition
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun ForecastCard(forecast: WeatherForecast.DailyForecast) {
     Card(
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(8.dp),
-        modifier = Modifier.fillMaxWidth()
+        shape = RoundedCornerShape(20.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp, horizontal = 4.dp)
     ) {
         Row(
             modifier = Modifier
-                .background(CelestialBlue)
-                .padding(16.dp),
+                .background(Brush.verticalGradient(listOf(CelestialBlue, DeepSkyBlue)))
+                .padding(20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = forecast.date.toString(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold
+                    text = forecast.date.format(DateTimeFormatter.ofPattern("EEE, MMM d")),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold
                 )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
                 Text(
-                    text = forecast.condition.description,
+                    text = forecast.condition.description.replaceFirstChar { it.uppercase() },
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray
+                    color = Color.White.copy(alpha = 0.85f)
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(
+                    text = "🌡️ ${forecast.temperature.min}° / ${forecast.temperature.max}°",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White
                 )
                 Text(
-                    text = "Min: ${forecast.temperature.min}°C | Max: ${forecast.temperature.max}°C",
-                    style = MaterialTheme.typography.bodyMedium
+                    text = "💧 ${forecast.humidity}%  |  💨 ${forecast.wind.speed} km/h",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.White.copy(alpha = 0.9f)
                 )
             }
 
-            val url = "https://openweathermap.org/img/wn/${forecast.condition.iconCode}@2x.png"
-            Log.d("ForecastCard", "Taggs - Image URL: $url")
-            AsyncImage(
-                model = url,
-                contentDescription = forecast.condition.description,
-                modifier = Modifier.size(64.dp)
-            )
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(CircleShape)
+                    .background(Color.White.copy(alpha = 0.2f)),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = getEmojiForCondition(forecast.condition.iconCode),
+                    fontSize = 32.sp
+                )
+            }
         }
     }
 }

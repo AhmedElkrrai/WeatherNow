@@ -8,11 +8,9 @@ import com.example.core.domain.onError
 import com.example.core.domain.onSuccess
 import com.example.forecast.domain.usecases.GetWeatherForecastUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,9 +21,6 @@ class ForecastViewModel @Inject constructor(
 
     private val _state = MutableStateFlow<ForecastState>(ForecastState.Loading)
     val state: StateFlow<ForecastState> = _state.asStateFlow()
-
-    private val _event = Channel<ForecastEvent>()
-    val event = _event.receiveAsFlow()
 
     private var currentCity: City? = null
 
@@ -53,7 +48,6 @@ class ForecastViewModel @Inject constructor(
                         error = error as? DataError ?: DataError.GeneralError,
                         city = city
                     )
-                    _event.send(ForecastEvent.ShowError(error))
                 }
         }
     }
