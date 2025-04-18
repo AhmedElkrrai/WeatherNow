@@ -2,10 +2,10 @@ package com.example.data.source
 
 import com.example.core.domain.DataError
 import com.example.core.domain.Result
-import com.example.data.source.remote.dto.CurrentWeatherDto
-import com.example.data.source.remote.dto.WeatherForecastDto
+import com.example.data.source.remote.entities.CurrentWeather
+import com.example.data.source.remote.entities.WeatherForecast
 
 interface WeatherRepository {
-    suspend fun getCurrentWeather(city: String): Result<CurrentWeatherDto, DataError>
-    suspend fun getWeatherForecast(city: String): Result<WeatherForecastDto, DataError>
+    suspend fun getCurrentWeather(city: String): Result<CurrentWeather, DataError>
+    suspend fun getWeatherForecast(city: String): Result<WeatherForecast, DataError>
 }
