@@ -1,7 +1,7 @@
 package com.example.data.di
 
-import com.example.currentweather.domain.WeatherRepository
-import com.example.data.source.repository.WeatherRepositoryImpl
+import com.example.data.source.repository.ForecastRepositoryImpl
+import com.example.forecast.domain.ForecastRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,8 +10,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface WeatherBinder {
+interface ForecastBinder {
     @Singleton
     @Binds
-    fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepository
+    fun bindForecastRepository(impl: ForecastRepositoryImpl): ForecastRepository
 }

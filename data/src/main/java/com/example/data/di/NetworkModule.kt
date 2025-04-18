@@ -1,6 +1,7 @@
 package com.example.data.di
 
 import com.example.data.BuildConfig
+import com.example.data.source.remote.ForecastApiService
 import com.example.data.source.remote.WeatherApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -62,5 +63,11 @@ object NetworkModule {
     @Singleton
     fun provideWeatherApiService(retrofit: Retrofit): WeatherApiService {
         return retrofit.create(WeatherApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideForecastApiService(retrofit: Retrofit): ForecastApiService {
+        return retrofit.create(ForecastApiService::class.java)
     }
 }

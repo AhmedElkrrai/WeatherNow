@@ -1,12 +1,12 @@
 package com.example.data.mappers
 
-import com.example.currentweather.domain.entities.ConditionType
-import com.example.currentweather.domain.entities.Coordinates
+import com.example.core.domain.ConditionType
+import com.example.core.domain.Coordinates
 import com.example.currentweather.domain.entities.CurrentWeather
 import com.example.data.source.remote.dto.CurrentWeatherDto
 import com.example.data.source.remote.dto.ForecastResponseDto
 import com.example.data.source.remote.dto.WeatherDto
-import com.example.currentweather.domain.entities.WeatherForecast
+import com.example.forecast.domain.entities.WeatherForecast
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime

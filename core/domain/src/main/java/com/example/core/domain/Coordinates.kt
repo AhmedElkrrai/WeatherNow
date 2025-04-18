@@ -1,4 +1,4 @@
-package com.example.currentweather.domain.entities
+package com.example.core.domain
 
 data class Coordinates(
     val latitude: Double,

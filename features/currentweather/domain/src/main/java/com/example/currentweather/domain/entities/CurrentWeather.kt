@@ -1,5 +1,7 @@
 package com.example.currentweather.domain.entities
 
+import com.example.core.domain.ConditionType
+import com.example.core.domain.Coordinates
 import java.time.LocalDateTime
 
 data class CurrentWeather(

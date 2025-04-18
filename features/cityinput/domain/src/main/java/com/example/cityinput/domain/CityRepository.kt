@@ -1,8 +1,10 @@
 package com.example.cityinput.domain
 
 import com.example.cityinput.domain.entities.City
+import com.example.core.domain.DataError
+import com.example.core.domain.Result
 
 interface CityRepository {
     fun cacheSelectedCity(city: City)
-    fun getSelectedCity(): City
+    fun getSelectedCity(): Result<City, DataError>
 }

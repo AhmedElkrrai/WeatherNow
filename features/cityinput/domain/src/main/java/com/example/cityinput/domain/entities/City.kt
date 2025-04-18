@@ -35,9 +35,9 @@ enum class City(
     RAS_GHAREB("Ras Ghareb", 33.1123, 28.3589);
 
     companion object {
-        fun getCityByName(name: String): City {
+        fun getCityByName(name: String): City? {
             return entries
-                .find { it.cityName.equals(name, ignoreCase = true) } ?: CAIRO
+                .find { it.cityName.equals(name, ignoreCase = true) }
         }
     }
 }
