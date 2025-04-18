@@ -1,7 +1,7 @@
 package com.example.data.source.local
 
 import android.content.SharedPreferences
-import com.example.cityinput.domain.entities.City
+import com.example.core.domain.City
 import javax.inject.Inject
 
 class CityPreferenceManager @Inject constructor(

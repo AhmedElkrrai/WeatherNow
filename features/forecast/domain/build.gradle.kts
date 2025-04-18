@@ -13,5 +13,4 @@ kotlin {
 }
 dependencies {
     implementation(project(":core:domain"))
-    implementation(project(":features:cityinput:domain"))
 }

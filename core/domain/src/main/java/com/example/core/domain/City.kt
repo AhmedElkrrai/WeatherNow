@@ -1,4 +1,4 @@
-package com.example.cityinput.domain.entities
+package com.example.core.domain
 
 enum class City(
     val cityName: String,

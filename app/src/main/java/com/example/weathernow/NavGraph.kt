@@ -27,14 +27,9 @@ fun NavGraph(
 
         composable(
             route = Screen.Weather.route,
-            arguments = listOf(
-                navArgument(CITY) { type = NavType.StringType },
-            )
-        ) { backStackEntry ->
+        ) {
             WeatherScreenRoot(
                 navController = navController,
-                city = backStackEntry.arguments?.getString(CITY) ?: "",
-                backStackEntry = backStackEntry
             )
         }
 
@@ -47,7 +42,6 @@ fun NavGraph(
             ForecastScreenRoot(
                 navController = navController,
                 city = backStackEntry.arguments?.getString(CITY) ?: "",
-                backStackEntry = backStackEntry
             )
         }
     }

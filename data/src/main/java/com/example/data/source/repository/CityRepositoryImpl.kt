@@ -1,7 +1,7 @@
 package com.example.data.source.repository
 
 import com.example.cityinput.domain.CityRepository
-import com.example.cityinput.domain.entities.City
+import com.example.core.domain.City
 import com.example.core.domain.DataError
 import com.example.core.domain.Result
 import com.example.data.source.local.CityPreferenceManager

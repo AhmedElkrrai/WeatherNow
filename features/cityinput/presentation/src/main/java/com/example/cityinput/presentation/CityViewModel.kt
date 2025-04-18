@@ -2,15 +2,16 @@ package com.example.cityinput.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cityinput.domain.entities.City
 import com.example.cityinput.domain.usecase.CacheSelectedCityUseCase
 import com.example.cityinput.domain.usecase.GetSelectedCityUseCase
+import com.example.core.domain.City
 import com.example.core.domain.onError
 import com.example.core.domain.onSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,7 +22,7 @@ class CityViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<City?>(null)
-    val state: StateFlow<City?> = _state
+    val state: StateFlow<City?> = _state.asStateFlow()
 
     private val _event = MutableSharedFlow<CityEvent>()
     val event: MutableSharedFlow<CityEvent> = _event
