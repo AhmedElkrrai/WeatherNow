@@ -32,15 +32,18 @@ class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             getSelectedCity.invoke()
                 .onSuccess { city ->
+                    _state.update { state -> state.copy(isLoading = true) }
                     val result = getCurrentWeatherUseCase(city)
                     result.onSuccess { weather ->
                         _state.update { state ->
                             state.copy(
                                 city = city,
-                                currentWeather = weather
+                                currentWeather = weather,
+                                isLoading = false
                             )
                         }
                     }.onError { weatherError ->
+                        _state.update { state -> state.copy(isLoading = false) }
                         _event.emit(WeatherEvent.ShowError(weatherError))
                     }
                 }.onError { cityError ->

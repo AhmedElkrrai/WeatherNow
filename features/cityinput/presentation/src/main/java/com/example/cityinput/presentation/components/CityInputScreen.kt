@@ -1,5 +1,6 @@
 package com.example.cityinput.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,10 +17,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.core.domain.City
+import com.example.core.presentation.Blue
+import com.example.core.presentation.DeepSkyBlue
+import com.example.core.presentation.LightSkyBlue
+import com.example.core.presentation.Mauve
 
 @Composable
 fun CityInputScreen(
@@ -31,6 +37,11 @@ fun CityInputScreen(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    listOf(DeepSkyBlue, LightSkyBlue)
+                )
+            )
             .padding(16.dp)
     ) {
         Spacer(modifier = Modifier.height(10.dp))
@@ -60,10 +71,7 @@ fun CityInputScreen(
                         .fillMaxWidth()
                         .clickable { onCitySelected(city) },
                     colors = CardDefaults.cardColors(
-                        containerColor = if (isSelected)
-                            MaterialTheme.colorScheme.primaryContainer
-                        else
-                            MaterialTheme.colorScheme.surface
+                        containerColor = if (isSelected) Mauve else Blue
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {

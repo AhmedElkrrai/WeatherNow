@@ -41,14 +41,14 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
 
-    implementation("io.coil-kt:coil-compose:2.4.0")
-
     implementation(libs.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     implementation(libs.bundles.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.lottie.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -1,5 +1,6 @@
 package com.example.currentweather.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,18 +10,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.core.presentation.DeepSkyBlue
+import com.example.core.presentation.LightSkyBlue
 import com.example.currentweather.presentation.WeatherViewState
-import java.time.format.DateTimeFormatter
+import com.example.currentweather.presentation.utils.getLottieAnimationForCondition
+import java.time.LocalDate
 
 @Composable
 fun WeatherScreen(
@@ -30,76 +40,109 @@ fun WeatherScreen(
     modifier: Modifier = Modifier
 ) {
     val weather = state.currentWeather
-    val cityName = state.city?.cityName ?: "Unknown"
+    val city = state.city
 
-    if (weather == null) {
-        Box(
-            modifier = modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
-        return
-    }
-
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .background(
+                Brush.verticalGradient(
+                    listOf(DeepSkyBlue, LightSkyBlue)
+                )
+            )
+            .padding(16.dp)
     ) {
-        Text(
-            text = cityName,
-            style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
-
-        Text(
-            text = weather.timestamp.format(DateTimeFormatter.ofPattern("hh:mm a")),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
-
-        WeatherIconAndTemp(
-            iconCode = weather.condition.iconCode,
-            temp = weather.temperature.current,
-            description = weather.condition.description
-        )
-
-        WeatherDetailRow(label = "Feels like", value = "${weather.temperature.feelsLike}°C")
-        WeatherDetailRow(label = "Min / Max", value = "${weather.temperature.min}° / ${weather.temperature.max}°")
-        WeatherDetailRow(label = "Wind", value = "${weather.wind.speed} m/s")
-        WeatherDetailRow(label = "Humidity", value = "${weather.humidity}%")
-        WeatherDetailRow(label = "Pressure", value = "${weather.pressure} hPa")
-        WeatherDetailRow(label = "Visibility", value = "${weather.visibility} m")
-
-        weather.sunrise?.let {
-            WeatherDetailRow(label = "Sunrise", value = it.format(DateTimeFormatter.ofPattern("hh:mm a")))
-        }
-
-        weather.sunset?.let {
-            WeatherDetailRow(label = "Sunset", value = it.format(DateTimeFormatter.ofPattern("hh:mm a")))
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxSize()
         ) {
-            Button(
-                onClick = onCityClick,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text("Change City")
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // City and date
+            Text(
+                text = city?.cityName ?: "Unknown City",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.White
+            )
+            Text(
+                text = LocalDate.now().toString(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White
+            )
+
+            // Lottie weather animation
+            weather?.condition?.iconCode?.let { icon ->
+                val lottieRes = getLottieAnimationForCondition(icon)
+                LottieAnimation(
+                    composition = rememberLottieComposition(LottieCompositionSpec.RawRes(lottieRes)).value,
+                    iterations = LottieConstants.IterateForever,
+                    modifier = Modifier
+                        .size(200.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
             }
 
-            Button(
-                onClick = onForecastClick,
-                modifier = Modifier.weight(1f)
+            // Temperature
+            weather?.temperature?.let {
+                Text(
+                    text = "${it.current.toInt()}°C",
+                    style = MaterialTheme.typography.displayMedium,
+                    color = Color.White
+                )
+                Text(
+                    text = "Feels like ${it.feelsLike.toInt()}°C",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White
+                )
+            }
+
+            // Condition description
+            weather?.condition?.description?.let {
+                Text(
+                    text = it.replaceFirstChar { c -> c.uppercase() },
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White
+                )
+            }
+
+            // Weather details
+            weather?.let {
+                WeatherDetailRow(label = "Wind", value = "${it.wind.speed} m/s")
+                WeatherDetailRow(label = "Humidity", value = "${it.humidity}%")
+                WeatherDetailRow(label = "Pressure", value = "${it.pressure} hPa")
+                WeatherDetailRow(label = "Visibility", value = "${it.visibility} m")
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            // Actions
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                Text("View Forecast")
+                OutlinedButton(
+                    onClick = onForecastClick,
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("Forecast")
+                }
+
+                OutlinedButton(
+                    onClick = onCityClick,
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("Change City")
+                }
+            }
+        }
+
+        if (state.isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
             }
         }
     }
