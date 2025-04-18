@@ -46,6 +46,9 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":data"))
+    implementation(project(":features:cityinput"))
+    implementation(project(":features:currentweather"))
+    implementation(project(":features:forecast"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
