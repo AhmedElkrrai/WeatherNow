@@ -1,4 +1,4 @@
-package com.example.cityinput.presentation
+package com.example.cityinput.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

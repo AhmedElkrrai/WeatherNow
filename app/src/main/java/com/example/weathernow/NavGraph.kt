@@ -6,10 +6,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.cityinput.presentation.CityInputScreenRoot
+import com.example.cityinput.presentation.components.CityInputScreenRoot
 import com.example.core.presentation.CITY
 import com.example.core.presentation.Screen
-import com.example.currentweather.presentation.WeatherScreenRoot
+import com.example.currentweather.presentation.components.WeatherScreenRoot
 import com.example.forecast.presentation.ForecastScreenRoot
 
 @Composable
