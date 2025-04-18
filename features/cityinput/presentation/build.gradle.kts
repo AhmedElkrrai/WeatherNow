@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt.android)
+    kotlin("kapt")
 }
 
 android {
@@ -34,10 +36,18 @@ android {
 }
 
 dependencies {
+    implementation(project(":features:cityinput:domain"))
+    implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
+
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.bundles.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     implementation(libs.androidx.runtime.android)
     implementation(libs.material3)
     implementation(libs.androidx.navigation.runtime.ktx)

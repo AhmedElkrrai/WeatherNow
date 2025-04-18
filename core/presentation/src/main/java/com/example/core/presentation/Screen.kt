@@ -1,4 +1,4 @@
-package com.example.weathernow.navigation
+package com.example.core.presentation
 
 const val CITY = "city"
 

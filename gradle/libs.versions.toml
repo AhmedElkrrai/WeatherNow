@@ -16,7 +16,6 @@ navigationCompose = "2.8.7"
 hilt = "2.51.1"
 appcompat = "1.7.0"
 runtimeAndroid = "1.7.8"
-material = "1.12.0"
 jetbrainsKotlinJvm = "2.0.21"
 navigationRuntimeKtx = "2.8.9"
 
@@ -50,8 +49,8 @@ moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", ver
 retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version = "2.9.0" }
 okhttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version = "4.11.0" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+hilt-navigation-compose = "androidx.hilt:hilt-navigation-compose:1.2.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
