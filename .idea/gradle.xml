@@ -12,11 +12,19 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/domain" />
+            <option value="$PROJECT_DIR$/core/presentation" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/cityinput" />
+            <option value="$PROJECT_DIR$/features/cityinput/domain" />
+            <option value="$PROJECT_DIR$/features/cityinput/presentation" />
             <option value="$PROJECT_DIR$/features/currentweather" />
+            <option value="$PROJECT_DIR$/features/currentweather/domain" />
+            <option value="$PROJECT_DIR$/features/currentweather/presentation" />
             <option value="$PROJECT_DIR$/features/forecast" />
+            <option value="$PROJECT_DIR$/features/forecast/domain" />
+            <option value="$PROJECT_DIR$/features/forecast/presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

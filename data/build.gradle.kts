@@ -40,7 +40,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core:domain"))
+    implementation(project(":features:cityinput:domain"))
+    implementation(project(":features:currentweather:domain"))
+    implementation(project(":features:forecast:domain"))
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)

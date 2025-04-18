@@ -1,16 +1,28 @@
 package com.example.data.source
 
+import com.example.cityinput.domain.CityRepository
+import com.example.cityinput.domain.entities.City
 import com.example.core.domain.DataError
 import com.example.core.domain.Result
+import com.example.currentweather.domain.WeatherRepository
 import com.example.data.mappers.toDomain
 import com.example.data.source.remote.WeatherApiService
-import com.example.data.source.remote.entities.CurrentWeather
-import com.example.data.source.remote.entities.WeatherForecast
+import com.example.currentweather.domain.entities.CurrentWeather
+import com.example.currentweather.domain.entities.WeatherForecast
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
     private val remoteSource: WeatherApiService
-) : WeatherRepository {
+) : WeatherRepository,
+    CityRepository {
+
+    override fun cacheSelectedCity(city: City) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSelectedCity(): City {
+        TODO("Not yet implemented")
+    }
 
     override suspend fun getCurrentWeather(city: String): Result<CurrentWeather, DataError> {
         return try {

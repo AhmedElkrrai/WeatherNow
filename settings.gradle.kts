@@ -21,8 +21,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "WeatherNow"
 include(":app")
-include(":core")
+include(":core:domain")
+include(":core:presentation")
 include(":data")
-include(":features:cityinput")
-include(":features:currentweather")
-include(":features:forecast")
+include(":features:cityinput:domain")
+include(":features:cityinput:presentation")
+include(":features:currentweather:presentation")
+include(":features:forecast:presentation")
+include(":features:currentweather:domain")
+include(":features:forecast:domain")
+

@@ -1,6 +1,6 @@
 package com.example.data.di
 
-import com.example.data.source.WeatherRepository
+import com.example.currentweather.domain.WeatherRepository
 import com.example.data.source.WeatherRepositoryImpl
 import com.example.data.source.remote.WeatherApiService
 import dagger.Module

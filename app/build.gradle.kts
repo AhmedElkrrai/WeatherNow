@@ -44,11 +44,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:presentation"))
     implementation(project(":data"))
-    implementation(project(":features:cityinput"))
-    implementation(project(":features:currentweather"))
-    implementation(project(":features:forecast"))
+    implementation(project(":features:cityinput:domain"))
+    implementation(project(":features:cityinput:presentation"))
+    implementation(project(":features:currentweather:domain"))
+    implementation(project(":features:currentweather:presentation"))
+    implementation(project(":features:forecast:domain"))
+    implementation(project(":features:forecast:presentation"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
