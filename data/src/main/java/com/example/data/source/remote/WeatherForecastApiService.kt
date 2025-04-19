@@ -4,7 +4,7 @@ import com.example.data.source.remote.dto.ForecastResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ForecastApiService {
+interface WeatherForecastApiService {
     @GET("data/2.5/forecast")
     suspend fun getWeatherForecast(
         @Query("lat") latitude: Double,

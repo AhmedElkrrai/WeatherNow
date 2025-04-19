@@ -2,6 +2,7 @@ package com.example.data.di
 
 import com.example.data.source.repository.ForecastRepositoryImpl
 import com.example.forecast.domain.ForecastRepository
+import com.example.forecast.domain.usecases.GetDailyForecastUseCase
 import com.example.forecast.domain.usecases.GetWeatherForecastUseCase
 import dagger.Binds
 import dagger.Module
@@ -26,5 +27,12 @@ object ForecastModule {
         repository: ForecastRepository
     ): GetWeatherForecastUseCase {
         return GetWeatherForecastUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetDailyForecastUseCase(
+        repository: ForecastRepository
+    ): GetDailyForecastUseCase {
+        return GetDailyForecastUseCase(repository)
     }
 }

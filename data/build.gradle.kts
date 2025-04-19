@@ -13,6 +13,7 @@ android {
     defaultConfig {
         minSdk = 27
         buildConfigField("String", "WEATHER_API_KEY", "\"01aea064205c6437e4939aaa7d7b8611\"")
+        buildConfigField("String", "ONECALL_API_KEY", "\"cc37416998b1c5c681b5bff52606e655\"")
         buildConfigField("String", "WEATHER_BASE_URL", "\"https://api.openweathermap.org/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
