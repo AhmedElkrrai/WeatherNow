@@ -3,7 +3,6 @@ package com.example.data.di
 import com.example.data.source.repository.ForecastRepositoryImpl
 import com.example.forecast.domain.ForecastRepository
 import com.example.forecast.domain.usecases.GetDailyForecastUseCase
-import com.example.forecast.domain.usecases.GetWeatherForecastUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,12 +21,6 @@ interface ForecastBinder {
 @Module
 @InstallIn(SingletonComponent::class)
 object ForecastModule {
-    @Provides
-    fun provideGetWeatherForecastUseCase(
-        repository: ForecastRepository
-    ): GetWeatherForecastUseCase {
-        return GetWeatherForecastUseCase(repository)
-    }
 
     @Provides
     fun provideGetDailyForecastUseCase(

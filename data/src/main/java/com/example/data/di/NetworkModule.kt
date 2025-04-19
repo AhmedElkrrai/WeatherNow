@@ -3,7 +3,6 @@ package com.example.data.di
 import com.example.data.BuildConfig
 import com.example.data.source.remote.OneCallApiService
 import com.example.data.source.remote.WeatherApiService
-import com.example.data.source.remote.WeatherForecastApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -108,14 +107,6 @@ object NetworkModule {
         @WeatherClient retrofit: Retrofit
     ): WeatherApiService {
         return retrofit.create(WeatherApiService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideWeatherForecastApiService(
-        @WeatherClient retrofit: Retrofit
-    ): WeatherForecastApiService {
-        return retrofit.create(WeatherForecastApiService::class.java)
     }
 
     @Provides

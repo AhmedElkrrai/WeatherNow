@@ -4,7 +4,6 @@ import com.example.core.domain.ConditionType
 import com.example.core.domain.Coordinates
 import com.example.currentweather.domain.entities.CurrentWeather
 import com.example.data.source.remote.dto.CurrentWeatherDto
-import com.example.data.source.remote.dto.ForecastResponseDto
 import com.example.data.source.remote.dto.WeatherDto
 import com.example.forecast.domain.entities.WeatherForecast
 import java.time.Instant
@@ -56,4 +55,10 @@ fun WeatherDto.toConditionType(): ConditionType {
         in 801..804 -> ConditionType.CLOUDS
         else -> ConditionType.UNKNOWN
     }
+}
+
+fun Long.toLocalDateTime(): LocalDateTime {
+    return Instant.ofEpochSecond(this)
+        .atZone(ZoneId.systemDefault())
+        .toLocalDateTime()
 }
