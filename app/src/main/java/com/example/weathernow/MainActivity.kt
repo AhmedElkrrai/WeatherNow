@@ -6,23 +6,39 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.cityinput.domain.usecase.GetSelectedCityUseCase
+import com.example.core.domain.onError
+import com.example.core.domain.onSuccess
 import com.example.core.presentation.Screen
 import com.example.core.presentation.WeatherTheme
 import com.example.core.presentation.enableStickyImmersiveMode
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var getSelectedCityUseCase: GetSelectedCityUseCase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var startDestination = Screen.CityInput.route
+        getSelectedCityUseCase.invoke()
+            .onSuccess {
+                startDestination = Screen.Weather.route
+            }
+
         setContent {
             WeatherTheme {
                 val rootNavController = rememberNavController()
-                // check if there is a cached city -> open weather screen,
-                // else -> open city input screen
-                val startDestination = Screen.CityInput
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),

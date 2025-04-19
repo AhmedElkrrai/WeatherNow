@@ -15,19 +15,17 @@ import com.example.forecast.presentation.components.ForecastScreenRoot
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    startDestination: Screen,
+    startDestination: String,
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination.route
+        startDestination = startDestination
     ) {
         composable(Screen.CityInput.route) {
             CityInputScreenRoot(navController)
         }
 
-        composable(
-            route = Screen.Weather.route,
-        ) {
+        composable(Screen.Weather.route) {
             WeatherScreenRoot(
                 navController = navController,
             )
