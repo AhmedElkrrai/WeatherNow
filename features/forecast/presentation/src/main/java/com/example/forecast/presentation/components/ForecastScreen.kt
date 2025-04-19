@@ -33,16 +33,29 @@ fun ForecastScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+
         item {
             Text(
-                text = "${forecast.city.name}, ${forecast.city.country}",
+                text = state.city.cityName,
                 style = MaterialTheme.typography.headlineSmall,
                 color = Color.White
             )
+
+            Text(
+                text = "Timezone: ${forecast.timezone}",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White.copy(alpha = 0.8f)
+            )
         }
 
-        itemsIndexed(forecast.dailyForecasts) { _, day ->
-            ForecastCard(day)
+        itemsIndexed(forecast.daily) { _, day ->
+            ForecastCard(
+                date = day.date,
+                temperature = day.temperature,
+                weather = day.weather,
+                humidity = day.humidity,
+                wind = day.wind,
+            )
         }
     }
 }

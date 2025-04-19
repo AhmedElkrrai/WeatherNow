@@ -1,6 +1,5 @@
 package com.example.forecast.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.domain.City
@@ -8,7 +7,6 @@ import com.example.core.domain.DataError
 import com.example.core.domain.onError
 import com.example.core.domain.onSuccess
 import com.example.forecast.domain.usecases.GetDailyForecastUseCase
-import com.example.forecast.domain.usecases.GetWeatherForecastUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ForecastViewModel @Inject constructor(
-    private val getForecast: GetWeatherForecastUseCase,
     private val getDailyForecast: GetDailyForecastUseCase
 ) : ViewModel() {
 
@@ -40,14 +37,6 @@ class ForecastViewModel @Inject constructor(
             _state.value = ForecastState.Loading
 
             getDailyForecast(city)
-                .onSuccess { forecast ->
-                    Log.d("ForecastViewModel", "Taggs - forecast: $forecast")
-                }
-                .onError {
-                    Log.d("ForecastViewModel", "Taggs - failed: $it")
-                }
-
-            getForecast(city)
                 .onSuccess { forecast ->
                     _state.value = ForecastState.Success(
                         city = city,
