@@ -1,6 +1,7 @@
 package com.example.forecast.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -67,6 +68,16 @@ fun ForecastCard(
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White.copy(alpha = 0.85f)
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth(0.7f)
+                    ) {
+                        TemperatureItem("Day", temperature.day)
+                        TemperatureItem("High", temperature.max)
+                        TemperatureItem("Low", temperature.min)
+                        TemperatureItem("Night", temperature.night)
+                    }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "🌡️ ${temperature.min}° / ${temperature.max}°",
