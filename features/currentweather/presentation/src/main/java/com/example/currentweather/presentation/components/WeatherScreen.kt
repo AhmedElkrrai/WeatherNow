@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -30,7 +29,7 @@ import com.example.core.presentation.DeepSkyBlue
 import com.example.core.presentation.LightSkyBlue
 import com.example.core.presentation.LoadingScreen
 import com.example.currentweather.presentation.WeatherViewState
-import com.example.currentweather.presentation.utils.getLottieAnimationForCondition
+import com.example.weather_utils.getLottieAnimationForCondition
 import java.time.LocalDate
 
 @Composable

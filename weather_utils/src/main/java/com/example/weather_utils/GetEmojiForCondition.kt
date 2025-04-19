@@ -1,4 +1,4 @@
-package com.example.forecast.presentation.utils
+package com.example.weather_utils
 
 fun getEmojiForCondition(iconCode: String): String {
     return when (iconCode) {

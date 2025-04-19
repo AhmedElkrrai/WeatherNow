@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.example.core.presentation.CelestialBlue
 import com.example.core.presentation.DeepSkyBlue
 import com.example.forecast.domain.entities.OneCallWeatherForecast
-import com.example.forecast.presentation.utils.getEmojiForCondition
+import com.example.weather_utils.getEmojiForCondition
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

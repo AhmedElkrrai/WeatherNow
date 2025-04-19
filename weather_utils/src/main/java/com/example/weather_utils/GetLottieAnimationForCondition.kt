@@ -1,10 +1,6 @@
-package com.example.currentweather.presentation.utils
-
-import android.util.Log
-import com.example.currentweather.presentation.R
+package com.example.weather_utils
 
 fun getLottieAnimationForCondition(iconCode: String): Int {
-    Log.d("WeatherScreen", "Icon code: $iconCode")
     return when (iconCode) {
         "01d", "01n" -> R.raw.sunny
         "02d", "02n" -> R.raw.partly_cloudy

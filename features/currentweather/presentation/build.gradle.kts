@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":features:cityinput:domain"))
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
+    implementation(project(":weather_utils"))
 
     implementation(libs.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

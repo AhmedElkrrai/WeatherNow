@@ -31,3 +31,4 @@ include(":features:forecast:presentation")
 include(":features:currentweather:domain")
 include(":features:forecast:domain")
 
+include(":weather_utils")
