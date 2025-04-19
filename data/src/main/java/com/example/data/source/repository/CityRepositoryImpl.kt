@@ -10,6 +10,7 @@ import javax.inject.Inject
 class CityRepositoryImpl @Inject constructor(
     private val localSource: CityPreferenceManager,
 ) : CityRepository {
+
     override fun cacheSelectedCity(city: City) {
         localSource.saveCity(city)
     }
