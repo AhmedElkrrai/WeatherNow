@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -40,4 +41,20 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.example.weather_utils"
+            artifactId = "weather_utils"
+            version = "1.0.0"
+        }
+    }
+    repositories {
+        maven {
+            name = "myrepo"
+            url = uri(layout.buildDirectory.dir("repo"))
+        }
+    }
 }
