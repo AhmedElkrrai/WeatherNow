@@ -22,7 +22,7 @@ class ForecastRepositoryImpl @Inject constructor(
                 .toDomain()
             Result.Success(forecast)
         } catch (e: Exception) {
-            Result.Error(DataError.ServerError)
+            Result.Error(DataError.FailedToRetrieveData)
         }
     }
 }

@@ -54,11 +54,9 @@ class WeatherViewModel @Inject constructor(
 
     fun navigateToForecast() {
         viewModelScope.launch {
-            state.value.city?.name?.let {
-                _event.emit(
-                    WeatherEvent.Navigate(Screen.Forecast.createRoute(it))
-                )
-            }
+            _state.value.city?.let { city ->
+                _event.emit(WeatherEvent.Navigate(Screen.Forecast.createRoute(city.cityName)))
+            } ?: getCurrentWeather()
         }
     }
 

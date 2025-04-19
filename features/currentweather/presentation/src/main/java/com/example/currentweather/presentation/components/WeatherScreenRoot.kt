@@ -33,9 +33,7 @@ fun WeatherScreenRoot(
             }
 
             is WeatherEvent.Navigate -> {
-                state.city?.name?.let {
-                    navController.navigate(event.route)
-                }
+                navController.navigate(event.route)
             }
         }
     }

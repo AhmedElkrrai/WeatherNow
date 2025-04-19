@@ -45,7 +45,7 @@ class ForecastViewModel @Inject constructor(
                 }
                 .onError { error ->
                     _state.value = ForecastState.Error(
-                        error = error as? DataError ?: DataError.GeneralError,
+                        error = error as? DataError ?: DataError.FailedToRetrieveData,
                         city = city
                     )
                 }

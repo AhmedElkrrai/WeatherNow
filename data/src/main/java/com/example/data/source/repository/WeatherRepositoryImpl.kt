@@ -22,7 +22,7 @@ class WeatherRepositoryImpl @Inject constructor(
                 .toDomain()
             Result.Success(current)
         } catch (e: Exception) {
-            Result.Error(DataError.ServerError)
+            Result.Error(DataError.FailedToRetrieveData)
         }
     }
 }
