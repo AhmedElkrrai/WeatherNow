@@ -10,6 +10,7 @@ import com.example.forecast.domain.entities.WeatherForecast
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.ZoneId
 
 fun CurrentWeatherDto.toDomain(): CurrentWeather {
@@ -44,54 +45,7 @@ fun CurrentWeatherDto.toDomain(): CurrentWeather {
     )
 }
 
-fun ForecastResponseDto.toDomain(): WeatherForecast {
-    return WeatherForecast(
-        city = WeatherForecast.City(
-            name = city.name,
-            country = city.country,
-            coordinates = Coordinates(
-                latitude = city.coordinates.latitude,
-                longitude = city.coordinates.longitude
-            )
-        ),
-        dailyForecasts = forecastItems
-            .groupBy { it.dateTime.toLocalDate() }
-            .map { (date, items) ->
-                val mainItem = items.maxByOrNull { it.main.temp } ?: items.first()
-                WeatherForecast.DailyForecast(
-                    date = date,
-                    temperature = WeatherForecast.DailyForecast.Temperature(
-                        day = items.maxOf { it.main.temp },
-                        min = items.minOf { it.main.tempMin },
-                        max = items.maxOf { it.main.tempMax },
-                        night = items.findNightTemp(),
-                        evening = items.findEveningTemp(),
-                        morning = items.findMorningTemp()
-                    ),
-                    condition = WeatherForecast.DailyForecast.WeatherCondition(
-                        type = mainItem.weather.firstOrNull()?.toConditionType()
-                            ?: ConditionType.UNKNOWN,
-                        description = mainItem.weather.firstOrNull()?.description ?: "",
-                        iconCode = mainItem.weather.firstOrNull()?.icon ?: ""
-                    ),
-                    precipitation = WeatherForecast.DailyForecast.Precipitation(
-                        probability = mainItem.precipitationProbability ?: 0.0,
-                        rainVolume = mainItem.rain?.threeHourVolume,
-                        snowVolume = mainItem.snow?.threeHourVolume
-                    ),
-                    wind = WeatherForecast.DailyForecast.Wind(
-                        speed = mainItem.wind?.speed ?: 0.0,
-                        direction = mainItem.wind?.degrees ?: 0,
-                        gustSpeed = mainItem.wind?.gust
-                    ),
-                    humidity = mainItem.main.humidity,
-                    pressure = mainItem.main.pressure
-                )
-            }
-    )
-}
-
-private fun WeatherDto.toConditionType(): ConditionType {
+fun WeatherDto.toConditionType(): ConditionType {
     return when (id) {
         in 200..232 -> ConditionType.THUNDERSTORM
         in 300..321 -> ConditionType.DRIZZLE
@@ -102,40 +56,4 @@ private fun WeatherDto.toConditionType(): ConditionType {
         in 801..804 -> ConditionType.CLOUDS
         else -> ConditionType.UNKNOWN
     }
-}
-
-fun Long.toLocalDateTime(): LocalDateTime {
-    return Instant.ofEpochSecond(this)
-        .atZone(ZoneId.systemDefault())
-        .toLocalDateTime()
-}
-
-fun Long.toLocalDate(): LocalDate {
-    return Instant.ofEpochSecond(this)
-        .atZone(ZoneId.systemDefault())
-        .toLocalDate()
-}
-
-private fun List<ForecastResponseDto.ForecastItem>.findTimeBasedTemp(
-    vararg hourRanges: IntRange
-): Double? {
-    return this.firstOrNull { item ->
-        val hour = item.dateTime.toLocalDateTime().hour
-        hourRanges.any { range -> hour in range }
-    }?.main?.temp
-}
-
-private fun List<ForecastResponseDto.ForecastItem>.findNightTemp(): Double {
-    return findTimeBasedTemp(0..5, 21..23)
-        ?: this.minByOrNull { it.main.temp }?.main?.temp ?: 0.0
-}
-
-private fun List<ForecastResponseDto.ForecastItem>.findEveningTemp(): Double {
-    return findTimeBasedTemp(18..20)
-        ?: this.maxByOrNull { it.main.temp }?.main?.temp ?: 0.0
-}
-
-private fun List<ForecastResponseDto.ForecastItem>.findMorningTemp(): Double {
-    return findTimeBasedTemp(6..11)
-        ?: this.firstOrNull()?.main?.temp ?: 0.0
 }

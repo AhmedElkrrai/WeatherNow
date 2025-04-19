@@ -3,6 +3,7 @@ package com.example.forecast.domain.entities
 import com.example.core.domain.ConditionType
 import com.example.core.domain.Coordinates
 import java.time.LocalDate
+import java.time.LocalTime
 
 data class WeatherForecast(
     val city: City,
@@ -21,8 +22,16 @@ data class WeatherForecast(
         val precipitation: Precipitation,
         val wind: Wind,
         val humidity: Int,
-        val pressure: Int
+        val pressure: Int,
+        val hourlyForecasts: List<HourlyForecast>
     ) {
+
+        data class HourlyForecast(
+            val time: LocalTime,
+            val temperature: Double,
+            val iconCode: String
+        )
+
         data class Temperature(
             val day: Double,
             val min: Double,
